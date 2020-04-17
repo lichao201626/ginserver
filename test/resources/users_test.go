@@ -1,4 +1,4 @@
-package resources
+package test
 
 import (
 	"ginserver/resources"
