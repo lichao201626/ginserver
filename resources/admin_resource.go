@@ -1,12 +1,12 @@
 package resources
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"ginserver/dao"
 	"ginserver/models"
 	"ginserver/serializers"
 	"ginserver/util"
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

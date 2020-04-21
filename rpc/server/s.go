@@ -34,6 +34,16 @@ func cal(a int, b int) int {
 
 // cal(1,3)
 
+func handleBuffer(s string) string {
+	if s != "" {
+		fmt.Println("tcp received", s)
+	}
+	if s == "cal(1,3)" {
+		return "4       "
+	}
+	return "        "
+}
+
 func main() {
 	fmt.Println("server")
 	ip := net.IP{127, 0, 0, 1}
@@ -46,11 +56,13 @@ func main() {
 	fmt.Println("tcp listened", b)
 	defer b.Close()
 	//b.Accept()
+	con, _ := b.Accept()
 	for {
-		con, _ := b.Accept()
-		bf := make([]byte, 2048)
+		bf := make([]byte, 8)
 		x, _ := con.Read(bf)
-		fmt.Println("tcp received", string(bf[:x]))
-		con.Write([]byte("pong"))
+		s:=handleBuffer(string(bf[:x]))
+		if (s!="") {
+			con.Write([]byte(s))
+		}
 	}
 }
